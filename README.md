@@ -1,16 +1,23 @@
-The Chef-Repo
+Server Setup
 =============
 
-Step 1:
+A Chef CookBook for doing a base line server setup for web applications in Qwinix.
 
-We need to spin up the target server node
-Open https://learn.getchef.com/ in a new tab and click on Red Hat Enterprise Linux / CentOS
-Click on "Launch a CentOS Virtual Machine"
+Here are the steps one should follow to try this cookbook.
+
+Step 1: Spin Up a CentOS Node
+
+We need to spin up the target server node to run all of our cookbooks.
+
+1. Open https://learn.getchef.com/ in a new tab and click on Red Hat Enterprise Linux / CentOS
+2. Click on "Launch a CentOS Virtual Machine"
+
 You will see "Your dedicated hands-on environment is just a click away."
-Click on "Start Using This Environment"
+3. Click on "Start Using This Environment"
 This button will highlight only when the server is ready for you.
 
-Step 2:
+Step 2:Login to the server
+
 Now you will see something like this :
 
 CentOS 6.5 Server
@@ -21,8 +28,7 @@ State:  Running
 More details
 View VM
 
-
-Click More Details
+1. Click More Details
 
 VM Details
 External Address: uvo11okm8lv9qcu0ueh.vm.cld.sr  Click to copy to clipboard
