@@ -1,3 +1,77 @@
+The Chef-Repo
+=============
+
+Step 1:
+
+We need to spin up the target server node
+Open https://learn.getchef.com/ in a new tab and click on Red Hat Enterprise Linux / CentOS
+Click on "Launch a CentOS Virtual Machine"
+You will see "Your dedicated hands-on environment is just a click away."
+Click on "Start Using This Environment"
+This button will highlight only when the server is ready for you.
+
+Step 2:
+Now you will see something like this :
+
+CentOS 6.5 Server
+Description: OS: CentOS 6.5 x64
+Spec: 16 GB HD / 1 GB RAM
+OS: Linux
+State:  Running
+More details
+View VM
+
+
+Click More Details
+
+VM Details
+External Address: uvo11okm8lv9qcu0ueh.vm.cld.sr  Click to copy to clipboard
+Internal IP:
+10.160.34.98
+Total Memory: 1024 MB
+Disk Size:  16 GB
+CPU:  1
+The machine was prepared in 14 seconds
+Credentials (show password)
+Auto-login: root (local user)
+Username: root
+Password: ******
+
+Click on the show password
+you can also revert the whole VM if you want to wipe of everything and come back to the initial stage.
+
+Login to the server
+
+ssh root@uvo11okm8lv9qcu0ueh.vm.cld.sr
+Enter Password
+
+Step 3: Bootstrap the newly created node.
+
+knife bootstrap uvo11okm8lv9qcu0ueh.vm.cld.sr -x root -P Ar6fNlXqy1 -N qas-node
+
+options:
+
+-x root means bootstrap as user root
+-P is the password
+-N is the node name (node name is required when you add the run list), no resitrictions on the name, put anything.
+
+Now go to https://manage.opscode.com/organizations/qwinix-learning/nodes and you will see the newly bootstrapped node.
+
+
+Step 4:
+
+Upload the cookbook you have in your repo to the chef node server
+knife cookbook upload qwinix-app-setup
+
+Step 5:
+
+We need to create a runlist on our chef node
+knife node run_list add qas-node qwinix-app-setup
+
+
+
+
+
 The chef-repo
 ===============
 All installations require a central workspace known as the chef-repo. This is a place where primitive objects--cookbooks, roles, environments, data bags, and chef-repo configuration files--are stored and managed.

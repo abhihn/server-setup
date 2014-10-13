@@ -13,11 +13,11 @@ cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
 
 # AWS settings
-knife[:aws_access_key_id] = "AKIAJZCW7QCNF5M2HFVQ"
-knife[:aws_secret_access_key] = "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"
-knife[:flavor] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
-knife[:image] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
-knife[:availability_zone] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
-knife[:region] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
-knife[:distro] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
-knife[:template_file] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:aws_access_key_id] = "AKIAJZCW7QCNF5M2HFVQ"
+#knife[:aws_secret_access_key] = "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"
+#knife[:flavor] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:image] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:availability_zone] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:region] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:distro] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+#knife[:template_file] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
