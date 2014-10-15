@@ -198,8 +198,11 @@ ruby_block "add_line_crontab" do
   end
 end
 
-<<<<<<< HEAD
-# Install and configure chkrootkit
+
+# ------------------------
+# CHKROOTKIT
+# ------------------------
+
 remote_file "#{Chef::Config[:file_cache_path]}/webtatic_repo_latest.rpm" do
     source "http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm"
     action :create
@@ -234,7 +237,7 @@ end
 end
 
 execute "chmod +x /etc/cron.daily/chkrootkit"
-=======
+
 # ------------------------
 # POSTFIX
 # ------------------------
