@@ -3,11 +3,11 @@
 current_dir = File.dirname(__FILE__)
 log_level                :info
 log_location             STDOUT
-node_name                "kpvarma"
-client_key               "#{current_dir}/kpvarma.pem"
-validation_client_name   "qwinix-learning-validator"
-validation_key           "#{current_dir}/qwinix-learning-validator.pem"
-chef_server_url          "https://api.opscode.com/organizations/qwinix-learning"
+node_name                "tponnambalam"
+client_key               "#{current_dir}/tponnambalam.pem"
+validation_client_name   "tsandbox-validator"
+validation_key           "#{current_dir}/tsandbox-validator.pem"
+chef_server_url          "https://api.opscode.com/organizations/tsandbox"
 cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
