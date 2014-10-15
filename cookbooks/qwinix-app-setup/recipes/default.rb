@@ -198,15 +198,11 @@ ruby_block "add_line_crontab" do
   end
 end
 
-#
-# Cookbook Name:: postfix mail configuration
-# Recipe:: default
-#
-# Copyright 2014, Qwinix Technologies
-#
-# All rights reserved - Do Not Redistribute
-#
-# Configuration changes
+# ------------------------
+# POSTFIX
+# ------------------------
+
+# Default mail server in linux
 
 ruby_block "replace_line" do
   block do
@@ -234,9 +230,7 @@ ruby_block "add_line" do
 end
 
 # Enable Auto start
-
 execute "chkconfig postfix on"
 
 # Start Postfix mail daemon
-
 execute "service postfix start"
