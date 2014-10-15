@@ -117,3 +117,41 @@ ruby_block "modify_line" do
     file.write_file
   end
 end
+#adding Cron 
+
+aide = "/etc/cron.daily/aide"
+unless File.exists?(aide)
+file "/etc/cron.daily/aide" do
+owner   "root"
+group   "root"
+action  :create
+content <<-aide.gsub(/^ {4}/, '')
+
+#!/bin/bash
+
+/usr/sbin/aide -C | /bin/mail -s "AIDE report for $(hostname)" root@localhost
+
+ aide
+end
+end
+
+aide = "/etc/cron.weekly/aide"
+unless File.exists?(aide)
+file "/etc/cron.weekly/aide" do
+owner   "root"
+group   "root"
+action  :create
+content <<-aide.gsub(/^ {4}/, '')
+
+#!/bin/bash
+
+/usr/sbin/aide -u | /bin/mail -s "AIDE Database updated on $(hostname)" root@localhost
+
+cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+
+ aide
+end
+end
+
+execute "chmod +x /etc/cron.daily/aide"
+execute "chmod +x /etc/cron.weekly/aide"
