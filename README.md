@@ -53,7 +53,7 @@ Enter Password
 
 Step 3: Bootstrap the newly created node.
 
-knife bootstrap uvo11okm8lv9qcu0ueh.vm.cld.sr -x root -P Ar6fNlXqy1 -N qas-node
+knife bootstrap uvo1czptyo6diup9q0a.vm.cld.sr -x root -P Ey90m4U6UK -N qas-node
 
 options:
 
