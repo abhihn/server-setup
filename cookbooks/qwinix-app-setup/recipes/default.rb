@@ -274,4 +274,7 @@ execute "chkconfig postfix on"
 
 # Start Postfix mail daemon
 execute "service postfix start"
->>>>>>> master
+
+#Updating the Bash-Doc
+
+execute "yum -y update bash"
