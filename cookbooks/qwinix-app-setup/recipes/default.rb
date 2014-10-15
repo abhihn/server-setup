@@ -88,3 +88,16 @@ ruby_block "modify_line" do
     file.write_file
   end
 end
+
+
+#4. Installing Logwatch
+#
+#
+package 'logwatch' do
+ action :install
+end
+
+#5. Yum update
+#
+
+execute 'yum ­-y update'
