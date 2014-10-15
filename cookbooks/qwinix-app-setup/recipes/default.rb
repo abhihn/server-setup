@@ -117,67 +117,53 @@ ruby_block "modify_line" do
     file.write_file
   end
 end
-<<<<<<< HEAD
-#adding Cron 
+
+# ------------------------
+# Aide
+# ------------------------
+
+# Install the aide package
+package "aide" do
+  action :install
+end
 
 aide = "/etc/cron.daily/aide"
 unless File.exists?(aide)
-file "/etc/cron.daily/aide" do
-owner   "root"
-group   "root"
-action  :create
-content <<-aide.gsub(/^ {4}/, '')
-
-#!/bin/bash
-
-/usr/sbin/aide -C | /bin/mail -s "AIDE report for $(hostname)" root@localhost
-
- aide
-end
+  file "/etc/cron.daily/aide" do
+  owner   "root"
+  group   "root"
+  action  :create
+  # FIXME - Use a template for aide file
+  content <<-aide.gsub(/^ {4}/, '')
+    #!/bin/bash
+    /usr/sbin/aide -C | /bin/mail -s "AIDE report for $(hostname)" root@localhost
+    aide
+  end
 end
 
 aide = "/etc/cron.weekly/aide"
 unless File.exists?(aide)
-file "/etc/cron.weekly/aide" do
-owner   "root"
-group   "root"
-action  :create
-content <<-aide.gsub(/^ {4}/, '')
-
-#!/bin/bash
-
-/usr/sbin/aide -u | /bin/mail -s "AIDE Database updated on $(hostname)" root@localhost
-
-cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
-
- aide
-end
+  file "/etc/cron.weekly/aide" do
+    owner   "root"
+    group   "root"
+    action  :create
+    content <<-aide.gsub(/^ {4}/, '')
+      #!/bin/bash
+      /usr/sbin/aide -u | /bin/mail -s "AIDE Database updated on $(hostname)" root@localhost
+      cp -p /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+    aide
+  end
 end
 
 execute "chmod +x /etc/cron.daily/aide"
 execute "chmod +x /etc/cron.weekly/aide"
-=======
-
-
-#
-# Cookbook Name:: AIDE install
-# Recipe:: default
-#
-# Copyright 2014, Qwinix Technologies
-#
-# All rights reserved - Do Not Redistribute
-
-# Install the package
-package "aide" do
-  action :install
-end
 
 # Database initialization
 bash "Configure_AIDE" do
   user "root"
   code <<-EOH
-  aide --init 
-  mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+    aide --init
+    mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
   EOH
 end
 
@@ -189,4 +175,3 @@ ruby_block "add_line_crontab" do
     file.write_file
   end
 end
->>>>>>> 9596e16a586e3348103fdbe69a5b4e1b57f47734
