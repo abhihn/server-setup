@@ -117,3 +117,35 @@ ruby_block "modify_line" do
     file.write_file
   end
 end
+
+
+#
+# Cookbook Name:: AIDE install
+# Recipe:: default
+#
+# Copyright 2014, Qwinix Technologies
+#
+# All rights reserved - Do Not Redistribute
+
+# Install the package
+package "aide" do
+  action :install
+end
+
+# Database initialization
+bash "Configure_AIDE" do
+  user "root"
+  code <<-EOH
+  aide --init 
+  mv /var/lib/aide/aide.db.new.gz /var/lib/aide/aide.db.gz
+  EOH
+end
+
+# Add job to crontab
+ruby_block "add_line_crontab" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/crontab")
+    file.insert_line_if_no_match("00 20 * * * /usr/sbin/aide --check", "00 20 * * * /usr/sbin/aide --check")
+    file.write_file
+  end
+end
