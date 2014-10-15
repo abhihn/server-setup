@@ -274,4 +274,37 @@ execute "chkconfig postfix on"
 
 # Start Postfix mail daemon
 execute "service postfix start"
->>>>>>> master
+
+# ------------------------
+# Creating USERS and GROUP
+# ------------------------
+# Create deploy user
+
+user "deploy" do
+supports :manage_home => true
+comment "Deploy User"
+home "/home/deploy"
+shell "/bin/bash"
+password "$1$CBtdXK6u$jXiDMrjjuv2EeRnGxhyl/1"
+end
+
+# Create deploy group
+
+group "deploy" do
+action :create
+members "deploy"
+append true
+end
+
+# Create or update sudoers file.
+
+template "/etc/sudoers" do
+source "sudoers.erb"
+mode '0440'
+owner 'root'
+group 'root'
+variables({
+:sudoers_groups => node[:authorization][:sudo][:groups],
+:sudoers_users => node[:authorization][:sudo][:users]
+})
+end
