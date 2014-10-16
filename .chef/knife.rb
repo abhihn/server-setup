@@ -12,6 +12,7 @@ cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
 
+
 # AWS settings
 #knife[:aws_access_key_id] = "AKIAJZCW7QCNF5M2HFVQ"
 #knife[:aws_secret_access_key] = "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"
