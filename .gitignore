@@ -2,7 +2,6 @@
 .chef/*.pem
 .chef/*.rb
 .chef/encrypted_data_bag_secret
-.chef/knife.rb
 
 # Ruby
 .rake_test_cache
