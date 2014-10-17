@@ -286,15 +286,16 @@ ruby_block "insert_line_if_no_match" do
   end
 end
 
+
 #Chnage Password policy
 
 ruby_block "modify line" do
   block do
     file = Chef::Util::FileEdit.new("/etc/login.defs")
-    file.search_file_replace_line("PASS_MAX_DAYS	99999", "PASS_MAX_DAYS   30")
-    file.search_file_replace_line("PASS_MIN_DAYS	0", "PASS_MIN_DAYS   7")
-    file.search_file_replace_line("PASS_MIN_LEN	5", "PASS_MIN_LEN    10")
-    file.search_file_replace_line("PASS_WARN_AGE	7", "PASS_WARN_AGE   7")
+    file.search_file_replace_line("PASS_MAX_DAYS  99999", "PASS_MAX_DAYS   30")
+    file.search_file_replace_line("PASS_MIN_DAYS  0", "PASS_MIN_DAYS   7")
+    file.search_file_replace_line("PASS_MIN_LEN 5", "PASS_MIN_LEN    10")
+    file.search_file_replace_line("PASS_WARN_AGE  7", "PASS_WARN_AGE   7")
 file.write_file
   end
 end
@@ -319,6 +320,3 @@ ruby_block "insert_line_if_no_match" do
     file.write_file
   end
 end
-
-
-
