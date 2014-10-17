@@ -218,7 +218,6 @@ package "chkrootkit" do
 end
 
 
-
 chkrootkit = "/etc/cron.daily/chkrootkit"
 unless File.exists?(chkrootkit)
 file "/etc/cron.daily/chkrootkit" do
