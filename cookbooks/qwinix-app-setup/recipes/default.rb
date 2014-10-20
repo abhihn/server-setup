@@ -275,6 +275,63 @@ execute "chkconfig postfix on"
 execute "service postfix start"
 
 
+<<<<<<< HEAD
+# Cookbook Name:: banner
+
+file "/etc/motd" do
+owner   "root"
+group   "root"
+action  :create
+content <<-MOTD.gsub(/^ {4}/, '')
+
+==========================^[[1;32mW A R N I N G^[[0m=======================================
+This computer system is the property of the Qwinix Inc. It is for authorized use only. 
+Unauthorized or improper use of this system may result in administrative disciplinary 
+action and/or civil charges/criminal penalties. By continuing to use this system you 
+indicate your awareness of and consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning.
+=======================================================================================
+
+  MOTD
+end
+
+file "/etc/issue" do
+owner   "root"
+group   "root"
+action  :create
+content <<-MOTD.gsub(/^ {4}/, '')
+
+==============================^[[1;32mW A R N I N G^[[0m===============================
+This computer system is the property of the Qwinix Inc. It is for authorized use only. 
+Unauthorized or improper use of this system may result in administrative disciplinary 
+action and/or civil charges/criminal penalties. By continuing to use this system you 
+indicate your awareness of and consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning.
+=======================================================================================
+
+
+  MOTD
+end
+
+file "/etc/issue.net" do
+owner   "root"
+group   "root"
+action  :create
+content <<-MOTD.gsub(/^ {4}/, '')
+
+==============================^[[1;32mW A R N I N G^[[0m==============================
+This computer system is the property of the Qwinix Inc. It is for authorized use only. 
+Unauthorized or improper use of this system may result in administrative disciplinary 
+action and/or civil charges/criminal penalties. By continuing to use this system you 
+indicate your awareness of and consent to these terms and conditions of use.
+
+LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning.
+======================================================================================
+
+  MOTD
+=======
 #Updating the Bash-Doc
 
 execute "yum -y update bash"
@@ -374,4 +431,5 @@ ruby_block "insert_line_if_no_match" do
     file.insert_line_if_no_match("account     required      pam_tally2.so", "account     required      pam_tally2.so")
     file.write_file
   end
+>>>>>>> master
 end
