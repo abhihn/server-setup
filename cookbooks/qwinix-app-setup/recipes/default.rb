@@ -274,6 +274,10 @@ execute "chkconfig postfix on"
 # Start Postfix mail daemon
 execute "service postfix start"
 
+
+#Updating the Bash-Doc
+
+execute "yum -y update bash"
 # ------------------------
 # Creating USERS and GROUP
 # ------------------------
