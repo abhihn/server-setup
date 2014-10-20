@@ -274,8 +274,17 @@ execute "chkconfig postfix on"
 # Start Postfix mail daemon
 execute "service postfix start"
 
+# Cookbook Name:: audit installation module
 
-<<<<<<< HEAD
+package "audit" do
+  action :install
+end
+
+ruby_block "insert_line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/logrotate.d/syslog")
+    file.insert_line_if_no_match("/var/log/audit/audit.log", "/var/log/audit/audit.log")
+
 # Cookbook Name:: banner
 
 file "/etc/motd" do
@@ -331,7 +340,6 @@ LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
 ======================================================================================
 
   MOTD
-=======
 #Updating the Bash-Doc
 
 execute "yum -y update bash"
@@ -399,6 +407,10 @@ ruby_block "insert_line_if_no_match" do
   end
 end
 
+ruby_block "comment_line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/audit/audit.rules")
+    file.search_file_replace_line("-D", "# -D")
 #Chnage Password policy
 
 ruby_block "modify line" do
@@ -423,6 +435,12 @@ ruby_block "modify line" do
   end
 end
 
+ruby_block "replace_line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/anacrontab")
+    file.search_file_replace_line("START_HOURS_RANGE=", "START_HOURS_RANGE=0-5")
+    file.write_file
+  end
 
 ruby_block "insert_line_if_no_match" do
   block do
@@ -431,5 +449,4 @@ ruby_block "insert_line_if_no_match" do
     file.insert_line_if_no_match("account     required      pam_tally2.so", "account     required      pam_tally2.so")
     file.write_file
   end
->>>>>>> master
 end
