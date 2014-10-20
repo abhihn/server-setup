@@ -8,7 +8,7 @@
 # Yum Update
 # ------------------------
 
-execute 'yum ­-y update'
+execute 'yum -y update'
 
 # ------------------------
 # Install Common Utilities
@@ -218,7 +218,6 @@ package "chkrootkit" do
 end
 
 
-
 chkrootkit = "/etc/cron.daily/chkrootkit"
 unless File.exists?(chkrootkit)
 file "/etc/cron.daily/chkrootkit" do
@@ -276,6 +275,7 @@ execute "chkconfig postfix on"
 execute "service postfix start"
 
 
+<<<<<<< HEAD
 # Cookbook Name:: banner
 
 file "/etc/motd" do
@@ -331,4 +331,105 @@ LOG OFF IMMEDIATELY if you do not agree to the conditions stated in this warning
 ======================================================================================
 
   MOTD
+=======
+#Updating the Bash-Doc
+
+execute "yum -y update bash"
+# ------------------------
+# Creating USERS and GROUP
+# ------------------------
+# Create deploy user
+
+user "deploy" do
+supports :manage_home => true
+comment "Deploy User"
+home "/home/deploy"
+shell "/bin/bash"
+password "$1$CBtdXK6u$jXiDMrjjuv2EeRnGxhyl/1"
+end
+
+# Create deploy group
+
+group "deploy" do
+action :create
+members "deploy"
+append true
+end
+
+# Create or update sudoers file.
+
+template "/etc/sudoers" do
+source "sudoers.erb"
+mode '0440'
+owner 'root'
+group 'root'
+variables({
+:sudoers_groups => node[:authorization][:sudo][:groups],
+:sudoers_users => node[:authorization][:sudo][:users]
+})
+# Disable Services
+# ------------------------
+
+ruby_block "modify_line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/sysctl.conf")
+    file.insert_line_if_no_match("# Disable ipv6", "# Disable ipv6")
+    file.insert_line_if_no_match("net.ipv6.conf.all.disable_ipv6 = 1", "net.ipv6.conf.all.disable_ipv6 = 1")
+    file.insert_line_if_no_match("net.ipv6.conf.default.disable_ipv6 = 1", "net.ipv6.conf.default.disable_ipv6 = 1")
+    file.insert_line_if_no_match("# Disable response to ping", "# Disable response to ping")
+    file.insert_line_if_no_match("net.ipv4.icmp_echo_ignore_all = 1", "net.ipv4.icmp_echo_ignore_all = 1")
+    file.insert_line_if_no_match("# Disable response to broadcasts", "# Disable response to broadcasts")
+    file.insert_line_if_no_match("net.ipv4.icmp_echo_ignore_broadcasts = 1", "net.ipv4.icmp_echo_ignore_broadcasts = 1")
+    file.insert_line_if_no_match("# Enable bad error message protection", "# Enable bad error message protection")
+    file.insert_line_if_no_match("net.ipv4.icmp_ignore_bogus_error_responses = 1", "net.ipv4.icmp_ignore_bogus_error_responses = 1")
+    file.insert_line_if_no_match("# Don't accept source routed packets", "# Don't accept source routed packets")
+    file.insert_line_if_no_match("net.ipv4.conf.all.accept_source_route = 0", "net.ipv4.conf.all.accept_source_route = 0")
+    file.insert_line_if_no_match("# Disable ICMP redirect acceptance", "# Disable ICMP redirect acceptance")
+    file.insert_line_if_no_match("net.ipv4.conf.all.accept_redirects = 0", "net.ipv4.conf.all.accept_redirects = 0")
+    file.insert_line_if_no_match("# Log spoofed packets, source routed packets, redirect packets", "# Log spoofed packets, source routed packets, redirect packets")
+    file.insert_line_if_no_match("net.ipv4.conf.all.log_martians = 1", "net.ipv4.conf.all.log_martians = 1")
+
+#Change ssh config
+ruby_block "insert_line_if_no_match" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/ssh/sshd_config")
+    file.insert_line_if_no_match("ListenAddress 0.0.0.0", "ListenAddress 0.0.0.0")
+    file.insert_line_if_no_match("PermitRootLogin no", "PermitRootLogin no")
+    file.write_file
+  end
+end
+
+#Chnage Password policy
+
+ruby_block "modify line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/login.defs")
+    file.search_file_replace_line("PASS_MAX_DAYS  99999", "PASS_MAX_DAYS   30")
+    file.search_file_replace_line("PASS_MIN_DAYS  0", "PASS_MIN_DAYS   7")
+    file.search_file_replace_line("PASS_MIN_LEN 5", "PASS_MIN_LEN    10")
+    file.search_file_replace_line("PASS_WARN_AGE  7", "PASS_WARN_AGE   7")
+file.write_file
+  end
+end
+
+
+
+ruby_block "modify line" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/pam.d/password-auth")
+    file.search_file_replace_line("password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok", "password    sufficient    pam_unix.so sha512 shadow nullok try_first_pass use_authtok remember=13")
+    file.search_file_replace_line("password    required      pam_deny.so", "password    required     pam_cracklib.so retry=2 minlen=10 difok=6 dcredit=1 ucredit=1 lcredit=1 ocredit=1")
+    file.write_file
+  end
+end
+
+
+ruby_block "insert_line_if_no_match" do
+  block do
+    file = Chef::Util::FileEdit.new("/etc/pam.d/system-auth")
+    file.insert_line_if_no_match("auth        required      pam_tally2.so  file=/var/log/tallylog deny=3 unlock_time=1200", "auth        required      pam_tally2.so  file=/var/log/tallylog deny=3 unlock_time=1200")
+    file.insert_line_if_no_match("account     required      pam_tally2.so", "account     required      pam_tally2.so")
+    file.write_file
+  end
+>>>>>>> master
 end
