@@ -13,6 +13,7 @@ cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
 
 
+<<<<<<< HEAD
 # AWS settings
 #knife[:aws_access_key_id] = "AKIAJZCW7QCNF5M2HFVQ"
 #knife[:aws_secret_access_key] = "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"
@@ -22,3 +23,5 @@ cookbook_path            ["#{current_dir}/../cookbooks"]
 #knife[:region] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
 #knife[:distro] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
 #knife[:template_file] = "q4SJ8ravQYVIXdeIzFLap3BqFkUlTpL4z1YATqu0"
+=======
+>>>>>>> master
