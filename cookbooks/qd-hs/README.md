@@ -1,4 +1,4 @@
-qd-hs-1 Cookbook
+qd-hs Cookbook
 ================
 
 This cookbook hardens the server by installing / configuring SELINUX, NTP, Malware Detectors, Aide, CHKROOTKIT, POSTFIX
@@ -6,19 +6,19 @@ This cookbook hardens the server by installing / configuring SELINUX, NTP, Malwa
 Create a cookbook
 -----------------
 
-$ knife cookbook create qd-hs-1
+$ knife cookbook create qd-hs
 
 Upload the cookbook to chef server
 ----------------------------------
 
-$ knife cookbook upload qd-hs-1
+$ knife cookbook upload qd-hs
 
-here qd-hs-1 in the cookbook name
+here qd-hs in the cookbook name
 
 Add cookbook to run list of a node
 ----------------------------------
 
-$ knife node run_list add nov-24 qd-hs-1
+$ knife node run_list add nov-24 qd-hs
 
 here nov-24 is the node name and qd-hs-1 in the cookbook name
 

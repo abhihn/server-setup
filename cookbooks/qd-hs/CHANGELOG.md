@@ -1,11 +1,11 @@
-qd-hs-1 CHANGELOG
+qd-hs CHANGELOG
 =================
 
-This file is used to list changes made in each version of the qd-hs-1 cookbook.
+This file is used to list changes made in each version of the qd-hs cookbook.
 
-0.1.0
+0.1.1
 -----
-- [your_name] - Initial release of qd-hs-1
+- [your_name] - Initial release of qd-hs
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
