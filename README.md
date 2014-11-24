@@ -6,17 +6,26 @@ A Chef CookBook for doing a base line server setup for web applications in Qwini
 Here are the steps one should follow to try this cookbook.
 
 Step 1: Spin Up a CentOS Node
+=============================
 
 We need to spin up the target server node to run all of our cookbooks.
 
-1. Open https://learn.getchef.com/ in a new tab and click on Red Hat Enterprise Linux / CentOS
-2. Click on "Launch a CentOS Virtual Machine"
+1. Open https://learn.getchef.com/
 
-You will see "Your dedicated hands-on environment is just a click away."
-3. Click on "Start Using This Environment"
+On Left side of the page, you will see Windows Server, Ubuntu and Chef Fundamental Series.
+
+2. Click on "Red Hat Enterprise Linux / CentOS"
+
+3. Click on "Launch a CentOS Virtual Machine" under the Get a "Linux machine" heading
+
+This will open up a new tab where you will see "Your dedicated hands-on environment is just a click away."
+
+3. Click on "Start Using This Environment".
+
 This button will highlight only when the server is ready for you.
 
-Step 2:Login to the server
+Step 2: Login to the server
+=============================
 
 Now you will see something like this :
 
@@ -53,7 +62,7 @@ Enter Password
 
 Step 3: Bootstrap the newly created node.
 
-knife bootstrap uvo1czptyo6diup9q0a.vm.cld.sr -x root -P Ey90m4U6UK -N qas-node
+knife bootstrap uvo1sg5d4fxjfb8amsb.vm.cld.sr --sudo -x root -P Lo1CNOge3F -N kpv-node
 
 options:
 
@@ -72,7 +81,7 @@ knife cookbook upload qwinix-app-setup
 Step 5:
 
 We need to create a runlist on our chef node
-knife node run_list add qas-node qwinix-app-setup
+knife node run_list add kpv-node qwinix-app-setup
 
 
 

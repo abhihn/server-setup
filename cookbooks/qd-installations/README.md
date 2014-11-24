@@ -1,9 +1,35 @@
-qwinix-app-setup Cookbook
-============================
-TODO: Enter the cookbook description here.
+qd-installations Cookbook
+=========================
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook will install update Yum and install the following
+
+1. Wget
+2. Logwatch
+3. Git
+4. gcc
+5. make
+6. libcurl-devel
+7. gcc-c++
+
+Create a cookbook
+-----------------
+
+$ knife cookbook create qd-installations
+
+Upload the cookbook to chef server
+----------------------------------
+
+$ knife cookbook upload qd-installations
+
+here qd-installations in the cookbook name
+
+Add cookbook to run list of a node
+----------------------------------
+
+$ knife node run_list add nov-24 qd-installations
+
+here nov-24 is the node name and qd-installations in the cookbook name
+
 
 Requirements
 ------------
@@ -11,14 +37,14 @@ TODO: List your cookbook requirements. Be sure to include any requirements this 
 
 e.g.
 #### packages
-- `toaster` - qwinix-app-setup needs toaster to brown your bagel.
+- `toaster` - qd-installations needs toaster to brown your bagel.
 
 Attributes
 ----------
 TODO: List your cookbook attributes here.
 
 e.g.
-#### qwinix-app-setup::default
+#### qd-installations::default
 <table>
   <tr>
     <th>Key</th>
@@ -27,7 +53,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['qwinix-app-setup']['bacon']</tt></td>
+    <td><tt>['qd-installations']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -36,26 +62,24 @@ e.g.
 
 Usage
 -----
-#### qwinix-app-setup::default
+#### qd-installations::default
 TODO: Write usage instructions for each cookbook.
 
 e.g.
-Just include `qwinix-app-setup` in your node's `run_list`:
+Just include `qd-installations` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[qwinix-app-setup]"
+    "recipe[qd-installations]"
   ]
 }
 ```
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +89,4 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Krishnaprasad Varma (kpvarma)
