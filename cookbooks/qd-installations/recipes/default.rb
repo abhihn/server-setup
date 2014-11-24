@@ -3,44 +3,21 @@
 # Copyright 2014, Qwinix Technologies Pvt Ltd
 # All rights reserved - do Not Redistribute
 
-# ------------------------
 # Yum Update
-# ------------------------
-
 execute 'yum -y update'
 
+# Bash Update
+execute "yum -y update bash"
+
 # ------------------------
-# Install Common Utilities
+# Apex Folder
 # ------------------------
 
-# Install Wget
-package 'wget' do
-  action :install
-end
-
-# Installing Logwatch
-package 'logwatch' do
-  action :install
-end
-
-# Installing Git
-package "git" do
-  action :install
-end
-
-# Installing GCC and other dependancies
-package "gcc" do
-  action :install
-end
-
-package "make" do
-  action :install
-end
-
-package "libcurl-devel" do
-  action :install
-end
-
-package "gcc-c++" do
-  action :install
+# Configuring the apex folder for putting all the applications
+directory "/apps" do
+  owner 'root'
+  group 'root'
+  mode '0644'
+  action :create
+  not_if { Dir.exist?("/apps") }
 end

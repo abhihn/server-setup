@@ -1,7 +1,13 @@
 qd-hs Cookbook
 ================
 
-This cookbook hardens the server by installing / configuring SELINUX, NTP, Malware Detectors, Aide, CHKROOTKIT, POSTFIX
+This cookbook hardens the server by installing / configuring
+1. SELINUX
+2. NTP
+3. Malware Detectors
+4. Aide
+5. CHKROOTKIT
+6. POSTFIX
 
 Create a cookbook
 -----------------
